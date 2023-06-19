@@ -134,7 +134,11 @@ document.querySelector("#btn-test-1").addEventListener("click", () => {
     switch (error.constructor) {
       case ReferenceError:
         console.log(error);
-        outputMessage = `A função playRockPaperScissor não foi declarada corretamente, verifique a nomenclatura em seu arquivo script.js. A função deve ter exatamente o nome solicitado.`;
+        if (error.message.includes("playRockPaperScissor")) {
+          outputMessage = `A função playRockPaperScissor não foi declarada corretamente, verifique a nomenclatura em seu arquivo script.js. A função deve ter exatamente o nome solicitado.`;
+        } else {
+          outputMessage = error.message;
+        }
         break;
       default:
         outputMessage = error.message;
